@@ -1,4 +1,4 @@
-# hermes-stack bundle ??? inventory (2026-06-15T19:27:09Z)
+# hermes-stack bundle — inventory (2026-06-15T19:27:09Z)
 
 ## bin/ (/tmp/hermes-stack)
 backup_drill.sh
