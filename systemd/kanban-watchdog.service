@@ -1,0 +1,8 @@
+[Unit]
+Description=Kanban grind watchdog (external: keeps orchestrator gateway up, recovers grind cards)
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/root/hermes/runtime/bin/kanban_watchdog.sh
+Environment=KANBAN_WATCHDOG_MAX=5

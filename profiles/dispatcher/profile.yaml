@@ -1,0 +1,5 @@
+description: 'Kanban dispatcher/queue operator: keeps boards flowing, promotes ready
+  work, monitors stale claims, reclaims stuck tasks, checks dispatcher health and
+  escalates blockers. It is not the single Telegram intake; orchestrator owns external
+  intake and dispatch.'
+description_auto: false

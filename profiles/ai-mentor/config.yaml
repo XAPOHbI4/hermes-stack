@@ -1,0 +1,837 @@
+model:
+  default: gpt-5.5
+  provider: openai-codex
+  base_url: ''
+  context_length: 200000
+  api_key: ''
+  api_mode: codex_responses
+providers: {}
+fallback_providers: []
+credential_pool_strategies: {}
+toolsets:
+- hermes-cli
+max_concurrent_sessions: null
+agent:
+  max_turns: 90
+  gateway_timeout: 1800
+  restart_drain_timeout: 180
+  api_max_retries: 3
+  service_tier: ''
+  tool_use_enforcement: auto
+  task_completion_guidance: true
+  environment_probe: true
+  environment_hint: ''
+  coding_context: auto
+  gateway_timeout_warning: 900
+  clarify_timeout: 600
+  gateway_notify_interval: 0
+  gateway_auto_continue_freshness: 3600
+  image_input_mode: auto
+  disabled_toolsets: []
+terminal:
+  backend: local
+  modal_mode: auto
+  cwd: .
+  timeout: 180
+  env_passthrough: []
+  shell_init_files: []
+  auto_source_bashrc: true
+  docker_image: nikolaik/python-nodejs:python3.11-nodejs20
+  docker_forward_env: []
+  docker_env: {}
+  singularity_image: docker://nikolaik/python-nodejs:python3.11-nodejs20
+  modal_image: nikolaik/python-nodejs:python3.11-nodejs20
+  daytona_image: nikolaik/python-nodejs:python3.11-nodejs20
+  container_cpu: 1
+  container_memory: 5120
+  container_disk: 51200
+  container_persistent: true
+  docker_volumes: []
+  docker_mount_cwd_to_workspace: false
+  docker_extra_args: []
+  docker_run_as_host_user: false
+  persistent_shell: true
+web:
+  backend: ''
+  search_backend: ''
+  extract_backend: ''
+browser:
+  inactivity_timeout: 120
+  command_timeout: 30
+  record_sessions: false
+  allow_private_urls: false
+  engine: auto
+  auto_local_for_private_urls: true
+  cdp_url: ''
+  dialog_policy: must_respond
+  dialog_timeout_s: 300
+  camofox:
+    managed_persistence: false
+    user_id: ''
+    session_key: ''
+    adopt_existing_tab: false
+    rewrite_loopback_urls: false
+    loopback_host_alias: host.docker.internal
+checkpoints:
+  enabled: false
+  max_snapshots: 20
+  max_total_size_mb: 500
+  max_file_size_mb: 10
+  auto_prune: true
+  retention_days: 7
+  delete_orphans: true
+  min_interval_hours: 24
+file_read_max_chars: 100000
+tool_output:
+  max_bytes: 50000
+  max_lines: 2000
+  max_line_length: 2000
+tool_loop_guardrails:
+  warnings_enabled: true
+  hard_stop_enabled: false
+  warn_after:
+    exact_failure: 2
+    same_tool_failure: 3
+    idempotent_no_progress: 2
+  hard_stop_after:
+    exact_failure: 5
+    same_tool_failure: 8
+    idempotent_no_progress: 5
+compression:
+  enabled: true
+  threshold: 0.5
+  target_ratio: 0.2
+  protect_last_n: 20
+  hygiene_hard_message_limit: 400
+  protect_first_n: 3
+  abort_on_summary_failure: false
+  codex_gpt55_autoraise: false
+prompt_caching:
+  cache_ttl: 5m
+bedrock:
+  region: ''
+  discovery:
+    enabled: true
+    provider_filter: []
+    refresh_interval: 3600
+  guardrail:
+    guardrail_identifier: ''
+    guardrail_version: ''
+    stream_processing_mode: async
+    trace: disabled
+auxiliary:
+  vision:
+    provider: openai-codex
+    model: gpt-5.4-mini
+    base_url: ''
+    api_key: ''
+    timeout: 120
+    extra_body: {}
+    download_timeout: 30
+    api_mode: codex_responses
+  web_extract:
+    provider: openai-codex
+    model: gpt-5.4-mini
+    base_url: ''
+    api_key: ''
+    timeout: 360
+    extra_body: {}
+    api_mode: codex_responses
+  compression:
+    provider: openai-codex
+    model: gpt-5.4-mini
+    base_url: ''
+    api_key: ''
+    timeout: 120
+    extra_body: {}
+    api_mode: codex_responses
+  skills_hub:
+    provider: openai-codex
+    model: gpt-5.4-mini
+    base_url: ''
+    api_key: ''
+    timeout: 30
+    extra_body: {}
+    api_mode: codex_responses
+  approval:
+    provider: openai-codex
+    model: gpt-5.4-mini
+    base_url: ''
+    api_key: ''
+    timeout: 30
+    extra_body: {}
+    api_mode: codex_responses
+  mcp:
+    provider: openai-codex
+    model: gpt-5.4-mini
+    base_url: ''
+    api_key: ''
+    timeout: 30
+    extra_body: {}
+    api_mode: codex_responses
+  title_generation:
+    provider: openai-codex
+    model: gpt-5.4-mini
+    base_url: ''
+    api_key: ''
+    timeout: 30
+    extra_body: {}
+    api_mode: codex_responses
+  tts_audio_tags:
+    provider: auto
+    model: ''
+    base_url: ''
+    api_key: ''
+    timeout: 30
+    extra_body: {}
+  triage_specifier:
+    provider: openai-codex
+    model: gpt-5.4-mini
+    base_url: ''
+    api_key: ''
+    timeout: 120
+    extra_body: {}
+    api_mode: codex_responses
+  kanban_decomposer:
+    provider: openai-codex
+    model: gpt-5.4-mini
+    base_url: ''
+    api_key: ''
+    timeout: 180
+    extra_body: {}
+    api_mode: codex_responses
+  profile_describer:
+    provider: openai-codex
+    model: gpt-5.4-mini
+    base_url: ''
+    api_key: ''
+    timeout: 60
+    extra_body: {}
+    api_mode: codex_responses
+  curator:
+    provider: openai-codex
+    model: gpt-5.4-mini
+    base_url: ''
+    api_key: ''
+    timeout: 600
+    extra_body: {}
+    api_mode: codex_responses
+display:
+  compact: false
+  personality: ''
+  resume_display: full
+  resume_exchanges: 10
+  resume_max_user_chars: 300
+  resume_max_assistant_chars: 200
+  resume_max_assistant_lines: 3
+  resume_skip_tool_only: true
+  busy_input_mode: interrupt
+  interface: cli
+  tui_auto_resume_recent: false
+  tui_agents_nudge: true
+  bell_on_complete: false
+  show_reasoning: false
+  streaming: false
+  timestamps: false
+  final_response_markdown: strip
+  persistent_output: true
+  persistent_output_max_lines: 200
+  inline_diffs: true
+  file_mutation_verifier: true
+  turn_completion_explainer: true
+  show_cost: false
+  skin: default
+  language: en
+  tui_status_indicator: kaomoji
+  user_message_preview:
+    first_lines: 2
+    last_lines: 2
+  interim_assistant_messages: true
+  tool_progress_command: false
+  tool_progress_overrides: {}
+  tool_preview_length: 0
+  ephemeral_system_ttl: 0
+  platforms:
+    telegram:
+      streaming: false
+    discord:
+      streaming: false
+  runtime_footer:
+    enabled: false
+    fields:
+    - model
+    - context_pct
+    - cwd
+  copy_shortcut: auto
+dashboard:
+  theme: default
+  show_token_analytics: false
+  oauth:
+    client_id: ''
+    portal_url: ''
+  basic_auth:
+    username: ''
+    password_hash: ''
+    password: ''
+    secret: ''
+    session_ttl_seconds: 0
+  public_url: ''
+privacy:
+  redact_pii: false
+tts:
+  provider: edge
+  edge:
+    voice: en-US-AriaNeural
+  elevenlabs:
+    voice_id: pNInz6obpgDQGcFmaJgB
+    model_id: eleven_multilingual_v2
+  openai:
+    model: gpt-4o-mini-tts
+    voice: alloy
+  gemini:
+    model: gemini-2.5-flash-preview-tts
+    voice: Kore
+    audio_tags: false
+    persona_prompt_file: ''
+  xai:
+    voice_id: eve
+    language: en
+    sample_rate: 24000
+    bit_rate: 128000
+  mistral:
+    model: voxtral-mini-tts-2603
+    voice_id: c69964a6-ab8b-4f8a-9465-ec0925096ec8
+  neutts:
+    ref_audio: ''
+    ref_text: ''
+    model: neuphonic/neutts-air-q4-gguf
+    device: cpu
+  piper:
+    voice: en_US-lessac-medium
+stt:
+  enabled: true
+  provider: local
+  local:
+    model: base
+    language: ''
+  openai:
+    model: whisper-1
+  mistral:
+    model: voxtral-mini-latest
+  elevenlabs:
+    model_id: scribe_v2
+    language_code: ''
+    tag_audio_events: false
+    diarize: false
+voice:
+  record_key: ctrl+b
+  max_recording_seconds: 120
+  auto_tts: false
+  beep_enabled: true
+  silence_threshold: 200
+  silence_duration: 3.0
+human_delay:
+  mode: 'off'
+  min_ms: 800
+  max_ms: 2500
+context:
+  engine: compressor
+memory:
+  memory_enabled: true
+  user_profile_enabled: true
+  write_approval: false
+  memory_char_limit: 4000
+  user_char_limit: 3000
+  provider: ''
+delegation:
+  model: gpt-5.4-mini
+  provider: openai-codex
+  base_url: ''
+  api_key: ''
+  api_mode: codex_responses
+  inherit_mcp_toolsets: true
+  max_iterations: 50
+  child_timeout_seconds: 600
+  reasoning_effort: ''
+  max_concurrent_children: 3
+  max_spawn_depth: 1
+  orchestrator_enabled: true
+  subagent_auto_approve: false
+prefill_messages_file: ''
+goals:
+  max_turns: 20
+skills:
+  external_dirs: []
+  template_vars: true
+  inline_shell: false
+  inline_shell_timeout: 10
+  guard_agent_created: false
+  write_approval: false
+curator:
+  enabled: true
+  interval_hours: 168
+  min_idle_hours: 2
+  stale_after_days: 30
+  archive_after_days: 90
+  prune_builtins: true
+  backup:
+    enabled: true
+    keep: 5
+honcho: {}
+timezone: ''
+slack:
+  require_mention: true
+  free_response_channels: ''
+  allowed_channels: ''
+  channel_prompts: {}
+discord:
+  require_mention: true
+  free_response_channels: ''
+  allowed_channels: ''
+  auto_thread: true
+  thread_require_mention: false
+  history_backfill: true
+  history_backfill_limit: 50
+  reactions: true
+  channel_prompts: {}
+  dm_role_auth_guild: ''
+  server_actions: ''
+  allow_any_attachment: false
+  max_attachment_bytes: 33554432
+  voice_fx:
+    enabled: false
+    ambient_enabled: true
+    ambient_path: ''
+    ambient_gain: 0.18
+    duck_gain: 0.06
+    speech_gain: 1.0
+    ack_enabled: true
+    ack_phrases:
+    - Let me look into that.
+    - One moment.
+    - Checking on that now.
+    - Give me a sec.
+    - On it.
+whatsapp: {}
+telegram:
+  reactions: false
+  gateway_restart_notification: false
+  channel_prompts: {}
+  allowed_chats: ''
+mattermost:
+  require_mention: true
+  free_response_channels: ''
+  allowed_channels: ''
+  channel_prompts: {}
+matrix:
+  require_mention: true
+  free_response_rooms: ''
+  allowed_rooms: ''
+approvals:
+  mode: manual
+  timeout: 60
+  cron_mode: deny
+  mcp_reload_confirm: true
+  destructive_slash_confirm: true
+command_allowlist:
+- script execution via -e/-c flag
+- delete in root path
+- execute_code
+quick_commands: {}
+hooks: {}
+hooks_auto_accept: false
+personalities: {}
+security:
+  allow_private_urls: false
+  redact_secrets: true
+  tirith_enabled: true
+  tirith_path: tirith
+  tirith_timeout: 5
+  tirith_fail_open: false
+  website_blocklist:
+    enabled: false
+    domains: []
+    shared_files: []
+  acked_advisories: []
+  allow_lazy_installs: true
+cron:
+  wrap_response: true
+  max_parallel_jobs: null
+kanban:
+  dispatch_in_gateway: false
+  dispatch_interval_seconds: 60
+  failure_limit: 2
+  worker_log_rotate_bytes: 2097152
+  worker_log_backup_count: 1
+  orchestrator_profile: orchestrator
+  default_assignee: orchestrator
+  max_in_progress_per_profile: 1
+  auto_decompose: true
+  auto_decompose_per_tick: 3
+  dispatch_stale_timeout_seconds: 14400
+code_execution:
+  mode: project
+tools:
+  tool_search:
+    enabled: auto
+    threshold_pct: 10
+    search_default_limit: 5
+    max_search_limit: 20
+logging:
+  level: INFO
+  max_size_mb: 5
+  backup_count: 3
+model_catalog:
+  enabled: true
+  url: https://hermes-agent.nousresearch.com/docs/api/model-catalog.json
+  ttl_hours: 1
+  providers: {}
+network:
+  force_ipv4: false
+gateway:
+  strict: false
+  media_delivery_allow_dirs: []
+  trust_recent_files: true
+  trust_recent_files_seconds: 600
+  platforms:
+    telegram:
+      extra:
+        group_allowed_chats:
+        - '__TG_COMPANY_GROUP__'
+        rich_messages: true
+      streaming: false
+streaming:
+  enabled: false
+  transport: auto
+  edit_interval: 0.8
+  buffer_threshold: 24
+  cursor: " \u2589"
+  fresh_final_after_seconds: 60.0
+sessions:
+  auto_prune: false
+  retention_days: 90
+  vacuum_after_prune: true
+  min_interval_hours: 24
+  write_json_snapshots: false
+onboarding:
+  seen:
+    busy_input_prompt: true
+  profile_build: ask
+updates:
+  pre_update_backup: false
+  backup_keep: 5
+  non_interactive_local_changes: stash
+lsp:
+  enabled: true
+  wait_mode: document
+  wait_timeout: 5.0
+  install_strategy: auto
+  servers: {}
+x_search:
+  model: grok-4.20-reasoning
+  timeout_seconds: 180
+  retries: 2
+secrets:
+  bitwarden:
+    enabled: false
+    access_token_env: BWS_ACCESS_TOKEN
+    project_id: ''
+    cache_ttl_seconds: 300
+    override_existing: true
+    auto_install: true
+    server_url: ''
+paste_collapse_threshold: 5
+paste_collapse_threshold_fallback: 5
+paste_collapse_char_threshold: 2000
+_config_version: 26
+mcp_servers:
+  hermes-local-memory:
+    command: /root/hermes/runtime/memory-local/.venv/bin/python
+    args:
+    - /root/.hermes/profiles/backend/scripts/memory_mcp_server.py
+    enabled: true
+    env:
+      HERMES_HOME: /root/.hermes/profiles/backend
+  linear:
+    url: https://mcp.linear.app/mcp
+    auth: oauth
+    enabled: false
+    note: OAuth completed on server; token stored under /root/.hermes/mcp-tokens.
+  sequential-thinking:
+    command: /root/hermes/runtime/bin/external-github/modelcontextprotocol__servers_packages__mcp-server-sequential-thinking
+    args: []
+    enabled: true
+  web-fetch:
+    command: /root/hermes/runtime/bin/external-github/modelcontextprotocol__servers_fetch__mcp-server-fetch
+    args: []
+    enabled: true
+  time:
+    command: /root/hermes/runtime/bin/external-github/modelcontextprotocol__servers_time__mcp-server-time
+    args: []
+    enabled: true
+  filesystem-hermes:
+    command: /root/hermes/runtime/bin/external-github/modelcontextprotocol__servers_packages__mcp-server-filesystem
+    args:
+    - /root/hermes
+    - /root/.hermes
+    enabled: true
+  git-hermes:
+    command: /root/hermes/runtime/bin/external-github/modelcontextprotocol__servers_git__mcp-server-git
+    args: []
+    enabled: true
+    note: Installed MCP git server. Tools accept repo_path; use /root/hermes/runtime/external-repos/*
+      or profile repos.
+  codex-plus-hermes-team:
+    command: /root/hermes/runtime/bin/external-github/codex-plus-hermes-team
+    args:
+    - serve
+    enabled: false
+    note: MCP bridge for Codex/other clients to call Hermes team. Installed and configured;
+      disabled inside Hermes to avoid self-loop.
+  context7:
+    command: /root/hermes/runtime/bin/external-github/upstash__context7-mcp
+    args: []
+    enabled: true
+    description: 'Context7 MCP: up-to-date library/framework documentation from Upstash
+      Context7'
+  notion:
+    command: /root/hermes/runtime/bin/notion-mcp-hermes
+    args: []
+    enabled: false
+    note: 'Uses /root/hermes/runtime/secrets/notion.env via wrapper; no token stored
+      in YAML. Disabled on xorek server: NOTION_TOKEN/NOTION_API_KEY is not configured.'
+runtime_notes:
+  native_codex_rollout_at: '2026-06-04T17:14:24.391118+00:00'
+  native_codex_rollout: Hermes inference, auxiliary tasks, and delegation use openai-codex;
+    cliproxyapi remains installed but is not Hermes LLM provider.
+  profile_model_role: orchestrator
+plugins:
+  enabled:
+  - hermes-android
+mcp:
+  servers: {}
+telegram_topic_routing:
+  chat_id: '__TG_HOME_CHAT__'
+  active_entrypoint: orchestrator
+  allowed_user_ids:
+  - __TG_OPERATOR_ID__
+  topics:
+    inbox:
+      title: 00 Inbox / ?????????? ?????
+      message_thread_id: 24
+      profile: orchestrator
+      board: company-runtime
+      purpose: new task intake and clarification
+    kanban:
+      title: 01 Kanban / ???????
+      message_thread_id: 26
+      profile: orchestrator
+      board: company-runtime
+      purpose: task lifecycle, status, done summaries, weak proof notices
+    approvals:
+      title: 02 Approvals / ???????
+      message_thread_id: 28
+      profile: orchestrator
+      board: company-runtime
+      purpose: human-required blockers, approvals and rework decisions
+    devops:
+      title: 03 DevOps
+      message_thread_id: 30
+      profile: devops
+      board: it-devops
+      purpose: server, Docker, launchd, cron, MCP, infra operations
+    product:
+      title: 04 Product
+      message_thread_id: 32
+      profile: product
+      board: product
+      purpose: product requirements, roadmap, prioritization, PRD
+    research:
+      title: 05 Research
+      message_thread_id: 34
+      profile: research
+      board: research
+      purpose: research, source gathering, synthesis, AI mentor research
+    system_alerts:
+      title: 09 System Alerts
+      message_thread_id: 37
+      profile: devops
+      board: it-devops
+      purpose: system alerts, cron health, incidents
+  kanban_notifications:
+    finals_topic: kanban
+    weak_proof_topic: kanban
+    human_blockers_topic: approvals
+    rework_topic: approvals
+    system_failures_topic: system_alerts
+  department_board_defaults:
+    devops: it-devops
+    product: product
+    research: research
+    smm: smm-department
+    ai-mentor: research
+    security: security
+    support: support
+    engineering: engineering
+    finance: finance
+    qa: qa-review
+  inbox_policy: Inbox topic is intake only. Kanban lifecycle/finals go to kanban topic;
+    human blockers/rework go to approvals; runtime failures go to system_alerts.
+platforms:
+  telegram:
+    gateway_restart_notification: false
+    extra:
+      group_topics:
+      - chat_id: '__TG_COMPANY_GROUP__'
+        topics:
+        - name: "00 Inbox / \u043F\u043E\u0441\u0442\u0430\u043D\u043E\u0432\u043A\
+            \u0430 \u0437\u0430\u0434\u0430\u0447"
+          thread_id: 2
+          skill: hermes-orchestration-entrypoint
+        - name: "01 Kanban / \u0441\u0442\u0430\u0442\u0443\u0441\u044B"
+          thread_id: 4
+          skill: kanban-orchestrator
+        - name: "02 Approvals / \u0431\u043B\u043E\u043A\u0435\u0440\u044B"
+          thread_id: 6
+          skill: kanban-orchestrator
+        - name: 03 IT & DevOps
+          thread_id: 8
+          skill: software-development
+        - name: 04 Product
+          thread_id: 10
+          skill: agentic-business-analysis
+        - name: 05 Engineering
+          thread_id: 25
+          skill: software-development
+        - name: 06 SMM & Content
+          thread_id: 12
+          skill: youtube-content
+        - name: 07 Support / Rutoll
+          thread_id: 14
+          skill: kanban-worker
+        - name: 08 Research
+          thread_id: 16
+          skill: deep-research
+        - name: 09 System Alerts
+          thread_id: 18
+          skill: kanban-orchestrator
+    channel_prompts:
+      '__TG_COMPANY_GROUP__': Hermes company operations supergroup. Use the topic map and
+        route work through orchestrator/Kanban. Do not treat Rutoll support as part
+        of this group runtime.
+      '2': "Telegram topic: 00 Inbox / \u043F\u043E\u0441\u0442\u0430\u043D\u043E\u0432\
+        \u043A\u0430 \u0437\u0430\u0434\u0430\u0447. Purpose: new task intake and\
+        \ task clarification. Primary profile: orchestrator. Board: system-changes.\
+        \ If this is a concrete task, ensure it is represented on Kanban and route\
+        \ through orchestrator policy."
+      '4': "Telegram topic: 01 Kanban / \u0441\u0442\u0430\u0442\u0443\u0441\u044B\
+        . Purpose: task status, queue movement, progress summaries. Primary profile:\
+        \ orchestrator. Board: company-runtime. If this is a concrete task, ensure\
+        \ it is represented on Kanban and route through orchestrator policy."
+      '6': "Telegram topic: 02 Approvals / \u0431\u043B\u043E\u043A\u0435\u0440\u044B\
+        . Purpose: approval requests, blockers, human decisions. Primary profile:\
+        \ orchestrator. Board: company-runtime. If this is a concrete task, ensure\
+        \ it is represented on Kanban and route through orchestrator policy."
+      '8': 'Telegram topic: 03 IT & DevOps. Purpose: server, Docker, systemd, cron,
+        infra operations. Primary profile: itops. Board: system-changes. If this is
+        a concrete task, ensure it is represented on Kanban and route through orchestrator
+        policy.'
+      '10': 'Telegram topic: 04 Product. Purpose: product requirements, PRD, prioritization.
+        Primary profile: product. Board: projects-ideas. If this is a concrete task,
+        ensure it is represented on Kanban and route through orchestrator policy.'
+      '25': 'Telegram topic: 05 Engineering. Purpose: backend/frontend/QA engineering
+        implementation. Primary profile: backend. Board: system-changes. If this is
+        a concrete task, ensure it is represented on Kanban and route through orchestrator
+        policy.'
+      '12': 'Telegram topic: 06 SMM & Content. Purpose: SMM, content, editorial calendar,
+        posts. Primary profile: smm. Board: smm-department. If this is a concrete
+        task, ensure it is represented on Kanban and route through orchestrator policy.'
+      '14': 'Telegram topic: 07 Support / Rutoll. Purpose: general support only; Rutoll
+        support stays separate. Primary profile: support. Board: company-runtime.
+        If this is a concrete task, ensure it is represented on Kanban and route through
+        orchestrator policy.'
+      '16': 'Telegram topic: 08 Research. Purpose: research, source gathering, synthesis.
+        Primary profile: research. Board: projects-ideas. If this is a concrete task,
+        ensure it is represented on Kanban and route through orchestrator policy.'
+      '18': 'Telegram topic: 09 System Alerts. Purpose: system alerts, cron health,
+        incident notifications. Primary profile: itops. Board: system-changes. If
+        this is a concrete task, ensure it is represented on Kanban and route through
+        orchestrator policy.'
+kanban_board_routing:
+  policy_version: departmental-board-routing-v1
+  language: ru
+  entrypoint: orchestrator
+  default_board: company-runtime
+  inbox_policy: topic 2 is intake only; create tasks on the routed department board,
+    not on Inbox itself
+  delivery_policy:
+    finals_and_lifecycle_thread_id: 4
+    human_blockers_and_rework_thread_id: 6
+    system_alerts_thread_id: 18
+    intake_ack_thread_id: 2
+  boards:
+    company-runtime:
+    - orchestrator
+    - dispatcher
+    - curator
+    it-devops:
+    - itops
+    - devops
+    engineering:
+    - backend
+    - frontend
+    - qa
+    - reviewer
+    product:
+    - product
+    - analyst
+    - ux
+    smm-department:
+    - smm
+    - content
+    marketing:
+    - marketing
+    research:
+    - research
+    - researcher-public
+    support:
+    - support
+    security:
+    - security
+    finance:
+    - finance
+    qa-review:
+    - qa
+    - reviewer
+  assignee_board:
+    orchestrator: company-runtime
+    dispatcher: company-runtime
+    curator: company-runtime
+    itops: it-devops
+    devops: it-devops
+    backend: engineering
+    frontend: engineering
+    qa: qa-review
+    reviewer: qa-review
+    product: product
+    analyst: product
+    ux: product
+    smm: smm-department
+    content: smm-department
+    marketing: marketing
+    research: research
+    researcher-public: research
+    support: support
+    security: security
+    finance: finance
+  topic_board:
+    '2': auto
+    '4': company-runtime
+    '6': company-runtime
+    '8': it-devops
+    '10': product
+    '12': smm-department
+    '14': support
+    '16': research
+    '18': it-devops
+    '25': engineering

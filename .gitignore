@@ -1,0 +1,35 @@
+# Secrets & instance state — NEVER commit
+.env
+*/.env
+**/.env
+.env.local
+auth.json
+**/auth.json
+*.credentials*
+.credentials.json
+mcp-tokens/
+*token*.json
+notion*.json
+
+# per-instance state (a clean clone starts empty)
+state.db*
+*.sqlite*
+**/kanban/
+**/memory/
+**/memories/
+**/closures/
+**/reviews/
+**/reports/
+**/sessions/
+**/logs/
+*.log
+
+# backups / archives
+*.tar.gz
+*.bak
+*.bak-*
+
+# junk
+__pycache__/
+*.pyc
+.DS_Store

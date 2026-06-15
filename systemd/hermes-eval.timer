@@ -1,0 +1,12 @@
+﻿[Unit]
+Description=Run Hermes eval/quality digest weekly (Sunday 09:00)
+
+[Timer]
+OnCalendar=Sun *-*-* 09:00:00
+Persistent=true
+AccuracySec=5m
+Unit=hermes-eval.service
+
+[Install]
+WantedBy=timers.target
+

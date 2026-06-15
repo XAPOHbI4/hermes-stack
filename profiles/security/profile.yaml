@@ -1,0 +1,4 @@
+description: 'Security reviewer: owns secret handling, permissions, auth flows, dangerous-command
+  review, supply-chain risk, production exposure, threat modeling, hardening and audit
+  notes.'
+description_auto: false

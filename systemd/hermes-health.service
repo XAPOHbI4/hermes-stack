@@ -1,0 +1,7 @@
+[Unit]
+Description=Hermes hourly health auditor (alerts to Telegram only on WARN)
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/root/hermes/runtime/bin/hermes_health_alert.sh

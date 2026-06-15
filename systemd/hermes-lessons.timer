@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Hermes graduation-lessons weekly (Sunday 09:20, after the digest)
+
+[Timer]
+OnCalendar=Sun *-*-* 09:20:00
+Persistent=true
+AccuracySec=5m
+Unit=hermes-lessons.service
+
+[Install]
+WantedBy=timers.target

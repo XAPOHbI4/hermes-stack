@@ -1,0 +1,259 @@
+model:
+  default: gpt-5.4
+  provider: openai-codex
+  base_url: ''
+  context_length: 200000
+  api_key: ''
+  api_mode: codex_responses
+toolsets:
+- hermes-cli
+tools:
+  tool_search:
+    enabled: auto
+    threshold_pct: 10
+    search_default_limit: 5
+    max_search_limit: 20
+auxiliary:
+  vision:
+    provider: openai-codex
+    model: gpt-5.4-mini
+    base_url: ''
+    api_key: ''
+    timeout: 120
+    extra_body: {}
+    download_timeout: 30
+    api_mode: codex_responses
+  web_extract:
+    provider: openai-codex
+    model: gpt-5.4-mini
+    base_url: ''
+    api_key: ''
+    timeout: 360
+    extra_body: {}
+    api_mode: codex_responses
+  compression:
+    provider: openai-codex
+    model: gpt-5.4-mini
+    base_url: ''
+    api_key: ''
+    timeout: 120
+    extra_body: {}
+    api_mode: codex_responses
+  skills_hub:
+    provider: openai-codex
+    model: gpt-5.4-mini
+    base_url: ''
+    api_key: ''
+    timeout: 30
+    extra_body: {}
+    api_mode: codex_responses
+  approval:
+    provider: openai-codex
+    model: gpt-5.4-mini
+    base_url: ''
+    api_key: ''
+    timeout: 30
+    extra_body: {}
+    api_mode: codex_responses
+  mcp:
+    provider: openai-codex
+    model: gpt-5.4-mini
+    base_url: ''
+    api_key: ''
+    timeout: 30
+    extra_body: {}
+    api_mode: codex_responses
+  title_generation:
+    provider: openai-codex
+    model: gpt-5.4-mini
+    base_url: ''
+    api_key: ''
+    timeout: 30
+    extra_body: {}
+    api_mode: codex_responses
+  triage_specifier:
+    provider: openai-codex
+    model: gpt-5.4-mini
+    base_url: ''
+    api_key: ''
+    timeout: 120
+    extra_body: {}
+    api_mode: codex_responses
+  kanban_decomposer:
+    provider: openai-codex
+    model: gpt-5.4-mini
+    base_url: ''
+    api_key: ''
+    timeout: 180
+    extra_body: {}
+    api_mode: codex_responses
+  profile_describer:
+    provider: openai-codex
+    model: gpt-5.4-mini
+    base_url: ''
+    api_key: ''
+    timeout: 60
+    extra_body: {}
+    api_mode: codex_responses
+  curator:
+    provider: openai-codex
+    model: gpt-5.4-mini
+    base_url: ''
+    api_key: ''
+    timeout: 600
+    extra_body: {}
+    api_mode: codex_responses
+mcp_servers:
+  hermes-local-memory:
+    command: /root/hermes/runtime/memory-local/.venv/bin/python
+    args:
+    - /root/.hermes/profiles/backend/scripts/memory_mcp_server.py
+    enabled: true
+    env:
+      HERMES_HOME: /root/.hermes/profiles/backend
+  linear:
+    url: https://mcp.linear.app/mcp
+    auth: oauth
+    enabled: false
+    auth_required: OAuth with Linear account; enable after manual auth
+  sequential-thinking:
+    command: /root/hermes/runtime/bin/external-github/modelcontextprotocol__servers_packages__mcp-server-sequential-thinking
+    args: []
+    enabled: true
+  web-fetch:
+    command: /root/hermes/runtime/bin/external-github/modelcontextprotocol__servers_fetch__mcp-server-fetch
+    args: []
+    enabled: true
+  time:
+    command: /root/hermes/runtime/bin/external-github/modelcontextprotocol__servers_time__mcp-server-time
+    args: []
+    enabled: true
+  filesystem-hermes:
+    command: /root/hermes/runtime/bin/external-github/modelcontextprotocol__servers_packages__mcp-server-filesystem
+    args:
+    - /root/hermes
+    - /root/.hermes
+    enabled: true
+  git-hermes:
+    command: /root/hermes/runtime/bin/external-github/modelcontextprotocol__servers_git__mcp-server-git
+    args: []
+    enabled: true
+    note: Installed MCP git server. Tools accept repo_path; use /root/hermes/runtime/external-repos/* or profile repos.
+  codex-plus-hermes-team:
+    command: /root/hermes/runtime/bin/external-github/codex-plus-hermes-team
+    args:
+    - serve
+    enabled: false
+    note: MCP bridge for Codex/other clients to call Hermes team. Installed and configured; disabled inside Hermes to avoid
+      self-loop.
+  context7:
+    command: /root/hermes/runtime/bin/external-github/upstash__context7-mcp
+    args: []
+    enabled: true
+    description: 'Context7 MCP: up-to-date library/framework documentation from Upstash Context7'
+  notion:
+    command: /root/hermes/runtime/bin/notion-mcp-hermes
+    args: []
+    enabled: false
+    note: 'Uses /root/hermes/runtime/secrets/notion.env via wrapper; no token stored in YAML. Disabled on xorek server: NOTION_TOKEN/NOTION_API_KEY
+      is not configured.'
+kanban:
+  dispatch_in_gateway: false
+  dispatch_interval_seconds: 60
+  failure_limit: 2
+  worker_log_rotate_bytes: 2097152
+  worker_log_backup_count: 1
+  orchestrator_profile: orchestrator
+  default_assignee: orchestrator
+  max_in_progress_per_profile: 1
+  auto_decompose: true
+  auto_decompose_per_tick: 3
+  dispatch_stale_timeout_seconds: 14400
+fallback_providers: []
+delegation:
+  provider: openai-codex
+  base_url: ''
+  api_key: ''
+  api_mode: codex_responses
+  model: gpt-5.4-mini
+runtime_notes:
+  native_codex_rollout_at: '2026-06-04T17:14:24.285558+00:00'
+  native_codex_rollout: Hermes inference, auxiliary tasks, and delegation use openai-codex; cliproxyapi remains installed
+    but is not Hermes LLM provider.
+  profile_model_role: dispatcher
+plugins:
+  enabled:
+  - hermes-android
+mcp:
+  servers: {}
+telegram_topic_routing:
+  chat_id: '__TG_HOME_CHAT__'
+  active_entrypoint: orchestrator
+  allowed_user_ids:
+  - __TG_OPERATOR_ID__
+  topics:
+    inbox:
+      title: 00 Inbox / ?????????? ?????
+      message_thread_id: 24
+      profile: orchestrator
+      board: company-runtime
+      purpose: new task intake and clarification
+    kanban:
+      title: 01 Kanban / ???????
+      message_thread_id: 26
+      profile: orchestrator
+      board: company-runtime
+      purpose: task lifecycle, status, done summaries, weak proof notices
+    approvals:
+      title: 02 Approvals / ???????
+      message_thread_id: 28
+      profile: orchestrator
+      board: company-runtime
+      purpose: human-required blockers, approvals and rework decisions
+    devops:
+      title: 03 DevOps
+      message_thread_id: 30
+      profile: devops
+      board: it-devops
+      purpose: server, Docker, launchd, cron, MCP, infra operations
+    product:
+      title: 04 Product
+      message_thread_id: 32
+      profile: product
+      board: product
+      purpose: product requirements, roadmap, prioritization, PRD
+    research:
+      title: 05 Research
+      message_thread_id: 34
+      profile: research
+      board: research
+      purpose: research, source gathering, synthesis, AI mentor research
+    system_alerts:
+      title: 09 System Alerts
+      message_thread_id: 37
+      profile: devops
+      board: it-devops
+      purpose: system alerts, cron health, incidents
+  kanban_notifications:
+    finals_topic: kanban
+    weak_proof_topic: kanban
+    human_blockers_topic: approvals
+    rework_topic: approvals
+    system_failures_topic: system_alerts
+  department_board_defaults:
+    devops: it-devops
+    product: product
+    research: research
+    smm: smm-department
+    ai-mentor: research
+    security: security
+    support: support
+    engineering: engineering
+    finance: finance
+    qa: qa-review
+  inbox_policy: Inbox topic is intake only. Kanban lifecycle/finals go to kanban topic; human blockers/rework go to approvals;
+    runtime failures go to system_alerts.
+compression:
+  enabled: true
+  threshold: 0.5
+  codex_gpt55_autoraise: false

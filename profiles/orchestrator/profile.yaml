@@ -1,0 +1,4 @@
+description: 'AI operations supervisor: the primary Telegram intake and Kanban dispatch
+  owner. Decomposes ambiguous/cross-functional work, routes to specialist profiles,
+  tracks dependencies/blockers, enforces readiness and closes only with evidence.'
+description_auto: false

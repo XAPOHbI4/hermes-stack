@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Kanban grind watchdog every 10 minutes
+
+[Timer]
+OnBootSec=120
+OnUnitInactiveSec=600
+AccuracySec=30s
+Unit=kanban-watchdog.service
+
+[Install]
+WantedBy=timers.target

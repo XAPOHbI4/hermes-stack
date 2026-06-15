@@ -1,0 +1,7 @@
+[Unit]
+Description=Kanban auto-decompose sweep (triage -> specialist child tasks)
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/root/hermes/runtime/bin/kanban_decompose_sweep.sh

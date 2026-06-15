@@ -1,0 +1,7 @@
+# Deploy scripts must stay LF (they run on Linux) regardless of clone platform.
+*.sh   text eol=lf
+*.py   text eol=lf
+*.yaml text eol=lf
+*.yml  text eol=lf
+*.md   text eol=lf
+*       text=auto

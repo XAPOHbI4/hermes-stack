@@ -1,0 +1,72 @@
+# Hermes cron definitions (re-create on a fresh instance).
+# Schedules are portable; bodies/prompts carried verbatim. Review before applying.
+
+## profile: orchestrator
+    Name:      Memory consolidator
+    Schedule:  0 4 * * *
+    Repeat:    ∞
+    Deliver:   local
+
+## profile: personalassistant
+    Name:      Джарвис — утренний фокус
+    Schedule:  30 9 * * *
+    Repeat:    ∞
+    Deliver:   origin
+    Name:      Джарвис — вечерний отчёт
+    Schedule:  30 21 * * *
+    Repeat:    ∞
+    Deliver:   origin
+    Name:      Контроль: решение друга по Рольфу
+    Schedule:  once at 2026-06-16 10:00
+    Repeat:    0/1
+    Deliver:   origin
+    Name:      Здоровье — вакуум утром
+    Schedule:  45 9 * * *
+    Repeat:    ∞
+    Deliver:   origin
+    Name:      Здоровье — отжимания 10×10
+    Schedule:  0 10,12,14,16,18 * * *
+    Repeat:    ∞
+    Deliver:   origin
+    Name:      Здоровье — шаги днём
+    Schedule:  30 13 * * *
+    Repeat:    ∞
+    Deliver:   origin
+    Name:      Здоровье — добить шаги вечером
+    Schedule:  30 18 * * *
+    Repeat:    ∞
+    Deliver:   origin
+    Name:      AI-фокус до вторника — первый блок
+    Schedule:  0 11 13-16 6 *
+    Repeat:    3/4
+    Deliver:   origin
+    Name:      AI-фокус до вторника — второй блок
+    Schedule:  30 15 13-16 6 *
+    Repeat:    3/4
+    Deliver:   origin
+    Name:      Контроль: вернуться к работе/доходу 16 июня
+    Schedule:  once at 2026-06-16 10:00
+    Repeat:    0/1
+    Deliver:   origin
+    Name:      Memory consolidator
+    Schedule:  0 4 * * *
+    Repeat:    ∞
+    Deliver:   local
+
+## profile: ai-mentor
+    Name:      AI Mentor - blitz review
+    Schedule:  15 19 * * 2,4,6
+    Repeat:    ∞
+    Deliver:   origin
+    Name:      Memory consolidator
+    Schedule:  0 4 * * *
+    Repeat:    ∞
+    Deliver:   local
+
+## profile: content
+
+## profile: product
+
+## profile: smm
+
+## profile: support

@@ -1,0 +1,11 @@
+[Unit]
+Description=Run kanban auto-decompose sweep every 10 minutes
+
+[Timer]
+OnBootSec=180
+OnUnitInactiveSec=600
+AccuracySec=30s
+Unit=kanban-decompose.service
+
+[Install]
+WantedBy=timers.target

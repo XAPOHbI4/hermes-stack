@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Hermes health auditor hourly
+
+[Timer]
+OnBootSec=300
+OnUnitInactiveSec=3600
+AccuracySec=1m
+Unit=hermes-health.service
+
+[Install]
+WantedBy=timers.target
