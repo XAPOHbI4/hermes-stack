@@ -53,7 +53,10 @@ Claude (PASS/REWORK/BLOCK) + proof policy → closure_gate → результа�
 
 ## Структура репо
 ```
-profiles/   22 контракта (AGENTS.md, SOUL.md, config.yaml, references/)
+profiles/   контракты (AGENTS.md тонкое ядро, SOUL.md, config.yaml)
+  references/  операционные контракты (proof, source-map/trust-pyramid, change-safety, memory-policy, …)
+  wiki/        текущая правда системы: architecture.md, decisions.md (отдельно от references и памяти)
+  USER.template.md  owner-context (заполнить → USER.md, он в .gitignore как per-instance PII)
 bin/        операционные скрипты (см. ниже)
 systemd/    10 unit-файлов (таймеры health/eval/lessons/decompose/watchdog)
 crons.manifest.txt   определения кронов (Джарвис, здоровье, дайджесты)

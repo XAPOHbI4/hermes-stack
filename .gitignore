@@ -11,6 +11,12 @@ mcp-tokens/
 *token*.json
 notion*.json
 
+# owner-context is per-instance PII — ship only the template
+USER.md
+**/USER.md
+!USER.template.md
+!**/USER.template.md
+
 # per-instance state (a clean clone starts empty)
 state.db*
 *.sqlite*
