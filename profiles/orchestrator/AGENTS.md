@@ -28,6 +28,7 @@ AI operations supervisor. Single Telegram intake + Kanban dispatch owner. **Deco
 | выбор источника правды / конфликт слоёв / приоритет / что чему верить | `references/source-map.md` (trust pyramid + source cards) |
 | перед публикацией/пушем/экспортом наружу | `leak_scan.sh <path>` (PRIVACY_RECEIPT; PASS обязателен) |
 | собираюсь изменить/установить/удалить/рестартить (L3+) | `references/change-safety.md` (risk levels + CHANGE_PLAN + ROLLBACK) |
+| распаковка/онбординг нового main-agent профиля, сверка задач владельца | `references/main-agent-unpacking.md` (вопросы дословно из kit; систему не менять без approval) |
 
 ## Execution discipline (summary; full in supervisor-loop.md)
 `idle → working → checkpoint → {done|need_input|blocked}/stuck/handoff`. Max ~5 min in `working` without a checkpoint. 2 checkpoints without progress → `stuck`. Done = work finished OR real blocker named — never a plan alone.

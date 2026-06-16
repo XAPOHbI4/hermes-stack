@@ -92,5 +92,14 @@ if [ -n "${CX:-}" ] && [ "$CX" != "NA" ]; then
   else warn "Codex limits HIGH (5h ${cp5}%, 7d ${cs7}%) — risk of throttle"; fi
 else warn "cannot read codex usage (no recent session rollout)"; fi
 
+echo "[11] Per-profile smoke (cached, daily hermes-smoke — active≠healthy)"
+SM=/root/hermes/runtime/logs/smoke-state.txt
+if [ -f "$SM" ]; then
+  sfail=$(grep -c ' FAIL' "$SM")
+  sts=$(grep '^ts=' "$SM" | cut -d= -f2)
+  if [ "${sfail:-0}" -eq 0 ]; then ok "all profiles answered smoke (as of ${sts:-?})"
+  else warn "profiles FAILING smoke: $(grep ' FAIL' "$SM" | awk '{print $1}' | tr '\n' ' ')(as of ${sts:-?})"; fi
+else warn "no smoke state yet (hermes-smoke not run)"; fi
+
 echo "=== RESULT: $([ $ISSUES -eq 0 ] && echo 'PASS — всё в норме' || echo "WARN — проблем: $ISSUES") ==="
 exit 0
