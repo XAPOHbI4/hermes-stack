@@ -6,6 +6,7 @@ HERE="$(cd "$(dirname "$0")" && pwd)"
 HHOME="${HERMES_PROFILES_HOME:-/root/.hermes}"
 PROFILES="$HHOME/profiles"
 RUNTIME="${HERMES_RUNTIME:-/root/hermes/runtime}"
+SYSTEMD_DIR="${SYSTEMD_DIR:-/etc/systemd/system}"
 
 echo "== Hermes-stack provisioner =="
 
@@ -41,12 +42,17 @@ done < <(grep -rIl '__TG_' "$PROFILES" 2>/dev/null || true)
 for p in "$PROFILES"/*/; do [ -d "$p" ] && cp "$HERE/.env" "$p/.env"; done
 echo "  [ok] placeholders substituted, per-profile .env written"
 
-# 4. systemd units (our timers) ---------------------------------------------
-cp "$HERE"/systemd/* /etc/systemd/system/
-systemctl daemon-reload
-for t in hermes-health hermes-eval hermes-lessons kanban-decompose kanban-watchdog; do
-  systemctl enable --now "$t.timer" >/dev/null 2>&1 && echo "  [ok] $t.timer" || echo "  [skip] $t.timer"
-done
+# 4. systemd units (our timers) — auto-detect ALL shipped *.timer (no stale list)
+if command -v systemctl >/dev/null 2>&1; then
+  cp "$HERE"/systemd/* "$SYSTEMD_DIR/"
+  systemctl daemon-reload
+  for unit in "$HERE"/systemd/*.timer; do
+    t=$(basename "$unit")
+    systemctl enable --now "$t" >/dev/null 2>&1 && echo "  [ok] $t" || echo "  [skip] $t"
+  done
+else
+  echo "  [skip] no systemd — copy $HERE/systemd/* and wire timers/cron manually for your init system"
+fi
 
 # 5. manual follow-ups ------------------------------------------------------
 cat <<EOF
