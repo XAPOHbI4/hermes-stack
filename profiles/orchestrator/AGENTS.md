@@ -25,6 +25,9 @@ AI operations supervisor. Single Telegram intake + Kanban dispatch owner. **Deco
 | external/social integrations, response style, Forge | `references/integrations-style-forge.md` |
 | ответы в Telegram: ACK, финал, формат служебки | `references/telegram-ux.md` |
 | AI-agents course/learning project | `references/kanban-and-boards.md` (course mode) |
+| выбор источника правды / конфликт слоёв / приоритет / что чему верить | `references/source-map.md` (trust pyramid + source cards) |
+| перед публикацией/пушем/экспортом наружу | `leak_scan.sh <path>` (PRIVACY_RECEIPT; PASS обязателен) |
+| собираюсь изменить/установить/удалить/рестартить (L3+) | `references/change-safety.md` (risk levels + CHANGE_PLAN + ROLLBACK) |
 
 ## Execution discipline (summary; full in supervisor-loop.md)
 `idle → working → checkpoint → {done|need_input|blocked}/stuck/handoff`. Max ~5 min in `working` without a checkpoint. 2 checkpoints without progress → `stuck`. Done = work finished OR real blocker named — never a plan alone.
