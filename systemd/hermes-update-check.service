@@ -1,0 +1,10 @@
+[Unit]
+Description=Hermes upstream update watcher (read-only; reports changes to Telegram)
+After=network-online.target
+
+[Service]
+Type=oneshot
+Environment=LANG=C.UTF-8
+Environment=LC_ALL=C.UTF-8
+Environment=PYTHONIOENCODING=utf-8
+ExecStart=/root/hermes/runtime/bin/hermes_update_check.sh

@@ -1,0 +1,11 @@
+[Unit]
+Description=Check Hermes upstream for updates weekly (Mon 10:00)
+
+[Timer]
+OnCalendar=Mon *-*-* 10:00:00
+Persistent=true
+AccuracySec=10m
+Unit=hermes-update-check.service
+
+[Install]
+WantedBy=timers.target
