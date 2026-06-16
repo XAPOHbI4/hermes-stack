@@ -46,8 +46,21 @@ mem=$(free -m | awk '/Mem:/{printf "%d", $7}')
 [ "${mem:-0}" -gt 300 ] && ok "RAM available ${mem}Mi" || warn "RAM available ${mem}Mi low"
 
 echo "[6] Recent gateway errors (1h)"
-errs=$(journalctl -u hermes-gateway@orchestrator --since '1 hour ago' --no-pager 2>/dev/null | grep -icE 'ERROR|Traceback|crash|fatal')
-[ "${errs:-0}" -lt 5 ] && ok "errors last 1h: ${errs}" || warn "errors last 1h: ${errs} (>5)"
+ELOG=$(journalctl -u hermes-gateway@orchestrator --since '1 hour ago' --no-pager 2>/dev/null | grep -iE 'ERROR|Traceback|crash|fatal')
+errs=$(printf '%s\n' "$ELOG" | grep -c .)
+if [ "${errs:-0}" -lt 5 ]; then ok "errors last 1h: ${errs}"
+else
+  warn "errors last 1h: ${errs} (>5)"
+  # breakdown: top error patterns (dedup, normalized) so the alert is actionable
+  printf '%s\n' "$ELOG" \
+    | sed -E 's/.*python\[[0-9]+\]: //; s/[0-9]{4,}/N/g' \
+    | sed -E 's/(.{72}).*/\1…/' \
+    | sort | uniq -c | sort -rn | head -4 \
+    | while read -r n msg; do printf '      ↳ %sx %s\n' "$n" "$msg"; done
+  if printf '%s\n' "$ELOG" | grep -qiE 'TimedOut|Bad Gateway|Network Retry|reconnect'; then
+    printf '      ↳ hint: похоже на транзиентный сетевой блип Telegram (шлюз сам переподключается, не падает)\n'
+  fi
+fi
 
 echo "[7] Skill hygiene & model providers"
 AUD=$("$PY" /root/hermes/runtime/bin/skill_audit.py 2>/dev/null)

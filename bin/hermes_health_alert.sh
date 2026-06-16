@@ -21,7 +21,9 @@ if [ -z "$TOKEN" ] || [ -z "$CHAT" ]; then
   echo "$(date -u +%FT%TZ) WARN but no token/chat to alert" >> "$LOG"; exit 0
 fi
 
-MSG="⚠️ Hermes health: обнаружены проблемы"$'\n'"$(echo "$OUT" | grep -E 'RESULT:|⚠️')"
+# Include WARN lines, RESULT, and the indented "↳" breakdown lines so the
+# alert says WHAT the problem is, not just a count.
+MSG="⚠️ Hermes health: обнаружены проблемы"$'\n'"$(echo "$OUT" | grep -E 'RESULT:|⚠️|↳')"
 curl -s --max-time 15 "https://api.telegram.org/bot${TOKEN}/sendMessage" \
   --data-urlencode "chat_id=${CHAT}" \
   --data-urlencode "text=${MSG}" \
