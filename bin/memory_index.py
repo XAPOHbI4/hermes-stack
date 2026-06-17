@@ -24,7 +24,9 @@ CHUNK = 1100  # ~chars
 # источники знаний (НЕ память, НЕ секреты, НЕ live state)
 ROOTS = os.environ.get("MI_ROOTS",
     "/root/.hermes/profiles/orchestrator/references:"
-    "/root/.hermes/profiles/orchestrator/wiki").split(":")
+    "/root/.hermes/profiles/orchestrator/wiki:"
+    "/root/.hermes/profiles/orchestrator/skills:"
+    "/root/hermes/runtime/reports").split(":")
 
 # §12 security gate: что НИКОГДА не индексируем
 FORBID_PATH = re.compile(r"(USER\.md$|\.env|\.bak|\.sqlite$|\.db$|/logs/|/kanban/|"
@@ -71,6 +73,10 @@ def _iter_files():
                     continue
                 if FORBID_PATH.search(p):
                     continue
+                if "/skills/" in p and fn != "SKILL.md":
+                    continue
+                if "/reports/" in p and not (fn.startswith("lessons-") and fn.endswith(".md") and fn not in ("lessons-latest.md", "lessons-msg.md")):
+                    continue
                 yield p
 
 def _chunks(path):
@@ -102,16 +108,28 @@ def rebuild_atomic():
     import numpy as np
     emb = _emb()
     rows = []
+    skipped_secret = []
     for p in _iter_files():
         title, chunks = _chunks(p)
-        st = "wiki" if "/wiki/" in p else "reference"
+        st = ("skill" if "/skills/" in p else "lesson" if "/reports/" in p else "wiki" if "/wiki/" in p else "reference")
+        file_rows = []
+        sec_hit = None
         for idx, heading, body in chunks:
             blob = f"{title}\n{heading}\n{body}"
             sec = _scan_secret(blob)
             if sec:
-                print(f"ABORT: hard-secret в {p} :: {sec} — индекс НЕ собран", file=sys.stderr)
-                return 2
-            rows.append((st, p, title, heading, idx, body, blob))
+                sec_hit = sec
+                break
+            file_rows.append((st, p, title, heading, idx, body, blob))
+        if sec_hit:
+            if "/skills/" in p:
+                skipped_secret.append(p)
+                continue
+            print(f"ABORT: hard-secret в {p} :: {sec_hit} — индекс НЕ собран", file=sys.stderr)
+            return 2
+        rows.extend(file_rows)
+    if skipped_secret:
+        print(f"SKIPPED {len(skipped_secret)} skill-файлов с secret-паттернами (НЕ проиндексированы)")
     if not rows:
         print("ABORT: 0 документов (проверь ROOTS)", file=sys.stderr); return 2
     print(f"embedding {len(rows)} chunks…")
@@ -169,7 +187,7 @@ def search(query, top_k=5, as_json=True):
     except Exception:
         pass
     scored = sorted(
-        [(float(cos[i]) + boost.get(ids[i],0.0), i) for i in range(len(ids))],
+        [(float(cos[i]) + boost.get(ids[i],0.0) + (0.0 if "/skills/" in paths[i] else 0.08), i) for i in range(len(ids))],
         reverse=True)[:top_k]
     res = [{"path": paths[i], "heading": heads[i], "score": round(s,3),
             "snippet": conts[i][:280].replace("\n"," ")} for s,i in scored]

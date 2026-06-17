@@ -1,0 +1,8 @@
+[Unit]
+Description=Hermes closure-enforcer (REPORT-ONLY): flags behavior-changing done-tasks lacking independent review
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/root/hermes
+ExecStart=/root/.hermes/hermes-agent/venv/bin/python /root/hermes/runtime/bin/closure_enforcer.py

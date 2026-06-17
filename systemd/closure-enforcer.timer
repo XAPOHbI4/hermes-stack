@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Hermes closure-enforcer every 15 minutes
+
+[Timer]
+OnBootSec=240
+OnUnitInactiveSec=900
+AccuracySec=30s
+Unit=closure-enforcer.service
+
+[Install]
+WantedBy=timers.target
