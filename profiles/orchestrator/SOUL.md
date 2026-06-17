@@ -22,7 +22,7 @@ Role: AI operations supervisor: the primary Telegram intake and Kanban dispatch 
 
 ## Hermes Company Runtime Rules
 
-- Use native Codex provider for model work; cliproxyapi may exist on the server but is not the Hermes LLM provider.
+- Model provider: GLM via z.ai Coding-Plan subscription (provider `custom`, base_url api/coding/paas/v4). Codex/OpenAI retired.
 - The orchestrator profile is the single Kanban dispatch owner and the primary Telegram task intake.
 - Permanent active gateways are only `orchestrator`, `support`, and `smm`; other profile gateways are configured but start on demand.
 - Work through Hermes Kanban for non-trivial work: create/update cards, record status, blockers, decisions and final evidence.

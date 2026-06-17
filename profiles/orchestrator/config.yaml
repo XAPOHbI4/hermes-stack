@@ -1,15 +1,17 @@
 model:
-  default: gpt-5.5
-  provider: openai-codex
-  base_url: ''
+  default: glm-5.2
+  provider: custom
+  base_url: 'https://api.z.ai/api/coding/paas/v4'
   context_length: 200000
-  api_key: ''
-  api_mode: codex_responses
+  api_key: '${ZAI_API_KEY}'
+  api_mode: chat_completions
+  extra_body: {thinking: {type: disabled}}
 providers: {}
 fallback_providers: []
 credential_pool_strategies: {}
 toolsets:
 - hermes-cli
+- kanban
 max_concurrent_sessions: null
 agent:
   max_turns: 90
@@ -124,94 +126,94 @@ bedrock:
     trace: disabled
 auxiliary:
   vision:
-    provider: openai-codex
-    model: gpt-5.4-mini
-    base_url: ''
-    api_key: ''
+    provider: custom
+    model: glm-5v-turbo
+    base_url: 'https://api.z.ai/api/coding/paas/v4'
+    api_key: '${ZAI_API_KEY}'
     timeout: 120
     extra_body: {}
     download_timeout: 30
-    api_mode: codex_responses
+    api_mode: chat_completions
   web_extract:
-    provider: openai-codex
-    model: gpt-5.4-mini
-    base_url: ''
-    api_key: ''
+    provider: custom
+    model: glm-4.5-air
+    base_url: 'https://api.z.ai/api/coding/paas/v4'
+    api_key: '${ZAI_API_KEY}'
     timeout: 360
     extra_body: {}
-    api_mode: codex_responses
+    api_mode: chat_completions
   compression:
-    provider: openai-codex
-    model: gpt-5.4-mini
-    base_url: ''
-    api_key: ''
+    provider: custom
+    model: glm-4.5-air
+    base_url: 'https://api.z.ai/api/coding/paas/v4'
+    api_key: '${ZAI_API_KEY}'
     timeout: 120
     extra_body: {}
-    api_mode: codex_responses
+    api_mode: chat_completions
   skills_hub:
-    provider: openai-codex
-    model: gpt-5.4-mini
-    base_url: ''
-    api_key: ''
+    provider: custom
+    model: glm-4.5-air
+    base_url: 'https://api.z.ai/api/coding/paas/v4'
+    api_key: '${ZAI_API_KEY}'
     timeout: 30
     extra_body: {}
-    api_mode: codex_responses
+    api_mode: chat_completions
   approval:
-    provider: openai-codex
-    model: gpt-5.4-mini
-    base_url: ''
-    api_key: ''
+    provider: custom
+    model: glm-4.5-air
+    base_url: 'https://api.z.ai/api/coding/paas/v4'
+    api_key: '${ZAI_API_KEY}'
     timeout: 30
     extra_body: {}
-    api_mode: codex_responses
+    api_mode: chat_completions
   mcp:
-    provider: openai-codex
-    model: gpt-5.4-mini
-    base_url: ''
-    api_key: ''
+    provider: custom
+    model: glm-4.5-air
+    base_url: 'https://api.z.ai/api/coding/paas/v4'
+    api_key: '${ZAI_API_KEY}'
     timeout: 30
     extra_body: {}
-    api_mode: codex_responses
+    api_mode: chat_completions
   title_generation:
-    provider: openai-codex
-    model: gpt-5.4-mini
-    base_url: ''
-    api_key: ''
+    provider: custom
+    model: glm-4.5-air
+    base_url: 'https://api.z.ai/api/coding/paas/v4'
+    api_key: '${ZAI_API_KEY}'
     timeout: 30
     extra_body: {}
-    api_mode: codex_responses
+    api_mode: chat_completions
   triage_specifier:
-    provider: openai-codex
-    model: gpt-5.4-mini
-    base_url: ''
-    api_key: ''
+    provider: custom
+    model: glm-4.5-air
+    base_url: 'https://api.z.ai/api/coding/paas/v4'
+    api_key: '${ZAI_API_KEY}'
     timeout: 120
     extra_body: {}
-    api_mode: codex_responses
+    api_mode: chat_completions
   kanban_decomposer:
-    provider: openai-codex
-    model: gpt-5.4-mini
-    base_url: ''
-    api_key: ''
+    provider: custom
+    model: glm-5.2
+    base_url: 'https://api.z.ai/api/coding/paas/v4'
+    api_key: '${ZAI_API_KEY}'
     timeout: 180
     extra_body: {}
-    api_mode: codex_responses
+    api_mode: chat_completions
   profile_describer:
-    provider: openai-codex
-    model: gpt-5.4-mini
-    base_url: ''
-    api_key: ''
+    provider: custom
+    model: glm-4.5-air
+    base_url: 'https://api.z.ai/api/coding/paas/v4'
+    api_key: '${ZAI_API_KEY}'
     timeout: 60
     extra_body: {}
-    api_mode: codex_responses
+    api_mode: chat_completions
   curator:
-    provider: openai-codex
-    model: gpt-5.4-mini
-    base_url: ''
-    api_key: ''
+    provider: custom
+    model: glm-5.2
+    base_url: 'https://api.z.ai/api/coding/paas/v4'
+    api_key: '${ZAI_API_KEY}'
     timeout: 600
     extra_body: {}
-    api_mode: codex_responses
+    api_mode: chat_completions
 display:
   compact: false
   personality: ''
@@ -334,11 +336,11 @@ memory:
   user_char_limit: 1375
   provider: ''
 delegation:
-  model: gpt-5.4-mini
-  provider: openai-codex
-  base_url: ''
-  api_key: ''
-  api_mode: codex_responses
+  model: glm-4.5-air
+  provider: custom
+  base_url: 'https://api.z.ai/api/coding/paas/v4'
+  api_key: '${ZAI_API_KEY}'
+  api_mode: chat_completions
   inherit_mcp_toolsets: true
   max_iterations: 50
   child_timeout_seconds: 600
@@ -595,8 +597,7 @@ mcp_servers:
       in YAML. Disabled on xorek server: NOTION_TOKEN/NOTION_API_KEY is not configured.'
 runtime_notes:
   native_codex_rollout_at: '2026-06-04T17:14:24.391118+00:00'
-  native_codex_rollout: Hermes inference, auxiliary tasks, and delegation use openai-codex;
-    cliproxyapi remains installed but is not Hermes LLM provider.
+  native_codex_rollout: Migrated to z.ai GLM (provider custom, coding endpoint) 2026-06-17; Codex retired.
   profile_model_role: orchestrator
 plugins:
   enabled:
