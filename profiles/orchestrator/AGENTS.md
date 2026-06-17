@@ -32,6 +32,7 @@ AI operations supervisor. Single Telegram intake + Kanban dispatch owner. **Deco
 | сохранить факт / что класть в память / куда положить знание | `references/memory-policy.md` (что хранить, что никогда, what-goes-where) |
 | как/почему система устроена СЕЙЧАС, текущие решения | `wiki/index.md` → `wiki/architecture.md` / `wiki/decisions.md` |
 | нужен факт/знание проекта по смыслу, неочевиден нужный reference | сначала `bash runtime/bin/mi_search.sh "<запрос>"` → открой найденный source (`references/memory-index.md`) |
+| нужны факты/материалы по теме из общей базы знаний (курсы, уроки, доки) | `bash runtime/bin/kb_search.sh "<запрос>"` (общая память команды; цитируй source; см. `references/memory-index.md`) |
 | контекст/стиль/предпочтения владельца, маршрутизация под него | `USER.md` (owner-context; из `USER.template.md`) |
 
 ## Execution discipline (summary; full in supervisor-loop.md)

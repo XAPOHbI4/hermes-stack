@@ -89,7 +89,8 @@ install.sh    идемпотентный провижинер
 | `hermes_ops.py` | control-plane врапперы над нативными Kanban/MCP/Profile-командами (для кронов и ручных серверных операций, без печати секретов) |
 | `hermes_runtime.py` | рантайм-утилиты (Kanban/метрики/доставка) + memory-ingest/search (эмбеддинги через изолированный fastembed-venv, torch-free) |
 | `memory_index.py` | локальный семантический индекс references/wiki (fastembed MiniLM-multilingual 384d, offline; SQLite+FTS5 гибрид; `rebuild-atomic`/`verify`/`secret-scan`/`benchmark`/`search`/`embed`) |
-| `mi_search.sh` | read-only обёртка поиска по индексу оркестратора (→ JSON path/heading/score/snippet) |
+| `mi_search.sh` | read-only поиск по индексу оркестратора (references/wiki — устройство системы) |
+| `kb_search.sh` | read-only поиск по общей базе знаний команды (`/root/hermes/knowledge`) через `hermes_runtime memory-search` |
 | `memory_hygiene.py` | cron-обёртка: ежедневный ingest общей базы знаний в семантическую память |
 
 ## Развёртывание (3 яруса)
