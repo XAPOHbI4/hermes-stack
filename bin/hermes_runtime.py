@@ -159,18 +159,31 @@ def chunks(text: str, size: int = 1400, overlap: int = 180):
         start = max(0, end - overlap)
 
 
-def load_model(model_name: str):
-    from sentence_transformers import SentenceTransformer
+MI_VENV_PY = "/root/hermes/runtime/memory-index/.venv/bin/python"
+MI_SCRIPT = "/root/hermes/runtime/memory-index/memory_index.py"
 
-    return SentenceTransformer(model_name)
+
+def load_model(model_name: str):
+    # Embeddings come from the isolated fastembed venv (torch-free); the Hermes
+    # venv has no sentence_transformers. We pass the name through and embed via
+    # a subprocess against the dedicated venv (same MiniLM-multilingual model).
+    return model_name
 
 
 def embed_texts(model, texts):
     import numpy as np
 
-    arr = model.encode(texts, normalize_embeddings=True, show_progress_bar=False)
-    arr = np.asarray(arr, dtype="float32")
-    return arr
+    payload = json.dumps({"texts": list(texts)})
+    env = os.environ.copy()
+    env["HF_HUB_OFFLINE"] = "1"
+    proc = subprocess.run(
+        [MI_VENV_PY, MI_SCRIPT, "embed"],
+        input=payload, text=True, capture_output=True, env=env, timeout=900,
+    )
+    if proc.returncode != 0:
+        raise RuntimeError("fastembed embed failed: " + (proc.stderr or "")[-500:])
+    out = json.loads(proc.stdout)
+    return np.asarray(out["vectors"], dtype="float32")
 
 
 def vector_to_blob(vec) -> bytes:

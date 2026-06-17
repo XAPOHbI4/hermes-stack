@@ -28,6 +28,26 @@ cp "$HERE"/bin/* "$RUNTIME/bin/"
 chmod +x "$RUNTIME"/bin/*.sh "$RUNTIME"/bin/*.py 2>/dev/null || true
 echo "  [ok] scripts -> $RUNTIME/bin"
 
+# 1b. semantic memory (isolated fastembed venv — torch-free; powers mi_search + memory-ingest)
+MI="$RUNTIME/memory-index"
+mkdir -p "$MI" "$HHOME/scripts"
+cp "$HERE/bin/memory_index.py" "$MI/memory_index.py"
+cp "$HERE/bin/memory_hygiene.py" "$HHOME/scripts/memory_hygiene.py"
+if command -v python3 >/dev/null 2>&1; then
+  [ -x "$MI/.venv/bin/python" ] || python3 -m venv "$MI/.venv"
+  "$MI/.venv/bin/python" -m pip install -q --upgrade pip
+  # --only-binary avoids building tokenizers from source (puccinialin/Rust toolchain)
+  "$MI/.venv/bin/pip" install -q --only-binary=:all: "fastembed<0.5" "numpy<3" \
+    && echo "  [ok] memory venv -> $MI/.venv" \
+    || echo "  [warn] fastembed install failed (network/wheels) — semantic search off until fixed"
+  # build orchestrator references/wiki index (downloads MiniLM-multilingual once, then offline)
+  "$MI/.venv/bin/python" "$MI/memory_index.py" rebuild-atomic >/dev/null 2>&1 \
+    && echo "  [ok] orchestrator memory index built" \
+    || echo "  [skip] build later: $MI/.venv/bin/python $MI/memory_index.py rebuild-atomic"
+else
+  echo "  [skip] no python3 — semantic memory not provisioned"
+fi
+
 # 2. profile contracts (merge over existing; never wipe live state) ---------
 for p in "$HERE"/profiles/*/; do
   name=$(basename "$p"); dst="$PROFILES/$name"; mkdir -p "$dst"

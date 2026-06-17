@@ -31,6 +31,7 @@ AI operations supervisor. Single Telegram intake + Kanban dispatch owner. **Deco
 | распаковка/онбординг нового main-agent профиля, сверка задач владельца | `references/main-agent-unpacking.md` (вопросы дословно из kit; систему не менять без approval) |
 | сохранить факт / что класть в память / куда положить знание | `references/memory-policy.md` (что хранить, что никогда, what-goes-where) |
 | как/почему система устроена СЕЙЧАС, текущие решения | `wiki/index.md` → `wiki/architecture.md` / `wiki/decisions.md` |
+| нужен факт/знание проекта по смыслу, неочевиден нужный reference | сначала `bash runtime/bin/mi_search.sh "<запрос>"` → открой найденный source (`references/memory-index.md`) |
 | контекст/стиль/предпочтения владельца, маршрутизация под него | `USER.md` (owner-context; из `USER.template.md`) |
 
 ## Execution discipline (summary; full in supervisor-loop.md)

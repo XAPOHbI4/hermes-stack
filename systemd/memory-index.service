@@ -1,0 +1,6 @@
+[Unit]
+Description=Rebuild orchestrator local memory index (references/wiki, offline fastembed)
+
+[Service]
+Type=oneshot
+ExecStart=/root/hermes/runtime/memory-index/.venv/bin/python /root/hermes/runtime/memory-index/memory_index.py rebuild-atomic

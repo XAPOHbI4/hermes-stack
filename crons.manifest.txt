@@ -6,6 +6,11 @@
     Schedule:  0 4 * * *
     Repeat:    ∞
     Deliver:   local
+    Name:      Memory Hygiene Ingest
+    Schedule:  15 3 * * *
+    Repeat:    ∞
+    Deliver:   local
+    Script:    /root/.hermes/scripts/memory_hygiene.py  (no_agent; ежедневно общая KB → семантическая память)
 
 ## profile: personalassistant
     Name:      Джарвис — утренний фокус
