@@ -1,0 +1,16 @@
+.env
+*.sqlite*
+*.db
+__pycache__/
+*.py[cod]
+recordings/
+transcripts/
+reports/
+backups/
+*.wav
+*.mp3
+*.m4a
+*.ogg
+course-mentor/references/source/
+course-mentor/references/manifest.json
+

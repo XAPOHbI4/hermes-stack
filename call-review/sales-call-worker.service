@@ -1,0 +1,22 @@
+[Unit]
+Description=Jarvis personal sales call queue
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/lib/hermes-agent/venv/bin/python /opt/sales-assistant-stt/pipeline.py worker
+WorkingDirectory=/opt/sales-assistant-stt
+Restart=on-failure
+RestartSec=5
+KillMode=control-group
+TimeoutStopSec=15
+UMask=0077
+Nice=10
+CPUQuota=600%
+MemoryMax=5G
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,18 @@
+{
+  "course": "Константы 2.0",
+  "source_file_count": 22,
+  "subtitle_count": 10,
+  "lessons": [
+    {"id":"01-programs","title":"Урок 1. Программы","interval_days":3},
+    {"id":"02-beliefs","title":"Урок 2. Убеждения","interval_days":3},
+    {"id":"03-creation","title":"Урок 3. Творение","interval_days":3},
+    {"id":"04-money","title":"Урок 4. Деньги","interval_days":3},
+    {"id":"05-laws","title":"Урок 5. Законы","interval_days":3},
+    {"id":"06-traps","title":"Урок 6. Ловушки","interval_days":3},
+    {"id":"07-doing","title":"Урок 7. Делание","interval_days":3},
+    {"id":"08-nika-viardo","title":"Гостевой эфир. Ника Виардо","interval_days":2},
+    {"id":"09-pavel-kochkin","title":"Гостевой эфир. Павел Кочкин","interval_days":2},
+    {"id":"10-ruslan-sukhiy","title":"Гостевой эфир. Руслан Сухий","interval_days":0}
+  ]
+}
+
