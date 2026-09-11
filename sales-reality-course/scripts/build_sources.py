@@ -31,7 +31,7 @@ def build(source, root=ROOT):
     manifest = {"course":"Продажи в новой реальности", "source_file_count":len(files),
                 "subtitle_count":len(transcripts), "unique_subtitle_count":len({f["sha256"] for f in transcripts}),
                 "files":files}
-    target = root / "references" / "manifest.local.json"
+    target = root / "references" / "manifest.json"
     target.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     return manifest
 
