@@ -17,7 +17,11 @@ course=importlib.util.module_from_spec(spec); spec.loader.exec_module(course)
 class Args: pass
 def call(fn,args=None):
     out=io.StringIO()
-    with contextlib.redirect_stdout(out),course.connect() as db: fn(db,args or Args())
+    db=course.connect()
+    try:
+        with contextlib.redirect_stdout(out): fn(db,args or Args())
+    finally:
+        db.close()
     return json.loads(out.getvalue())
 
 class CourseTest(unittest.TestCase):
@@ -40,7 +44,11 @@ class CourseTest(unittest.TestCase):
     def test_pause_is_silent_for_reminders(self):
         call(course.cmd_start); call(course.cmd_pause)
         a=Args(); a.after_hours=0; a.cooldown_hours=0; out=io.StringIO()
-        with contextlib.redirect_stdout(out),course.connect() as db: course.cmd_reminder(db,a)
+        db=course.connect()
+        try:
+            with contextlib.redirect_stdout(out): course.cmd_reminder(db,a)
+        finally:
+            db.close()
         self.assertEqual(out.getvalue().strip(),'NO_REPLY')
 
 if __name__=='__main__': unittest.main()

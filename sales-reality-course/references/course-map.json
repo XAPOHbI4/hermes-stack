@@ -1,0 +1,30 @@
+{
+  "course": "Продажи в новой реальности",
+  "unique_transcripts": 21,
+  "duration_seconds": 97202,
+  "lessons": [
+    {"id":"01-basics","title":"Основы продаж и переговоров","duration_seconds":7501,"track":"core","jarvis_priority":"high","assignment":true},
+    {"id":"02-funnels","title":"Воронки и этапы продаж","duration_seconds":6240,"track":"core","jarvis_priority":"high","assignment":true},
+    {"id":"03-psychology","title":"Психология сделки и мотивы клиента","duration_seconds":7200,"track":"core","jarvis_priority":"high","assignment":true},
+    {"id":"04-needs","title":"Формула сделки и выявление потребностей","duration_seconds":0,"track":"core","jarvis_priority":"high","assignment":false,"status":"expected_later"},
+    {"id":"05-remote-sales","title":"Продажи в переписке и по телефону","duration_seconds":6661,"track":"core","jarvis_priority":"high","assignment":true},
+    {"id":"06-objections","title":"Переговоры и работа с возражениями","duration_seconds":5220,"track":"core","jarvis_priority":"high","assignment":true},
+    {"id":"07-free-traffic","title":"Бесплатные каналы привлечения трафика","duration_seconds":2400,"track":"marketing","jarvis_priority":"medium","assignment":true},
+    {"id":"07-paid-traffic","title":"Платные каналы привлечения трафика","duration_seconds":9720,"track":"marketing","jarvis_priority":"low","assignment":true},
+    {"id":"07-ai-content","title":"Создание контента при помощи ИИ","duration_seconds":5640,"track":"marketing","jarvis_priority":"low","assignment":true},
+    {"id":"b01-expert-sales","title":"Альберт Тютин — Экспертные продажи","duration_seconds":3900,"track":"bonus","jarvis_priority":"high","assignment":false},
+    {"id":"b02-ai-cases","title":"Станислав Одинцов — Кейсы использования ИИ в продажах","duration_seconds":5100,"track":"bonus","jarvis_priority":"medium","assignment":false},
+    {"id":"b03-ai-leads","title":"Евгений Серебрянский — Поиск клиентов через ИИ","duration_seconds":3540,"track":"bonus","jarvis_priority":"medium","assignment":false},
+    {"id":"b04-chat-sales","title":"Виталий Говорухин — Продажи в переписке","duration_seconds":3540,"track":"bonus","jarvis_priority":"high","assignment":false},
+    {"id":"b05-price","title":"Дмитрий Ткаченко — Переговоры по цене","duration_seconds":3240,"track":"bonus","jarvis_priority":"high","assignment":false},
+    {"id":"b06-presentations","title":"Тимур Тажетдинов — Создание и проведение продающих презентаций","duration_seconds":3420,"track":"bonus","jarvis_priority":"medium","assignment":false},
+    {"id":"b07-ai-sales","title":"Влад Завадский — Использование ИИ в продажах","duration_seconds":3420,"track":"bonus","jarvis_priority":"high","assignment":false},
+    {"id":"b08-crisis","title":"Евгений Колотилов — Продажи в кризис","duration_seconds":3300,"track":"bonus","jarvis_priority":"high","assignment":false},
+    {"id":"b09-marketing","title":"Иван Белянкин — Интернет-маркетинг","duration_seconds":3540,"track":"bonus","jarvis_priority":"low","assignment":false},
+    {"id":"b10-speaking","title":"Публичные выступления","duration_seconds":3540,"track":"bonus","jarvis_priority":"medium","assignment":false},
+    {"id":"b11-qa-feb","title":"Ответы на вопросы участников — февраль 2026","duration_seconds":3420,"track":"qa","jarvis_priority":"medium","assignment":false},
+    {"id":"b12-qa-mar","title":"Ответы на вопросы участников — 05.03.2026","duration_seconds":3120,"track":"qa","jarvis_priority":"medium","assignment":false},
+    {"id":"b13-qa-jul","title":"Ответы на вопросы участников — 01.07.2026","duration_seconds":3540,"track":"qa","jarvis_priority":"low","assignment":false},
+    {"id":"08-final","title":"Финальное домашнее задание","duration_seconds":0,"track":"final","jarvis_priority":"high","assignment":true,"status":"design_separately"}
+  ]
+}
